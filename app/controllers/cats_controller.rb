@@ -1,12 +1,12 @@
 class CatsController < ApplicationController
   def index
     cats = Cat.all
-    render json: cats
+    render json: cats, methods: [:breed_name]
   end
 
   def show
     cat = Cat.find(params[:id])
-    render json: cat
+    render json: cat, methods: [:breed_name]
   end
 
   def update
@@ -22,7 +22,7 @@ class CatsController < ApplicationController
   def destroy
     cat = Cat.find(params[:id])
     cat.destroy
-    render json: cat
+    render json: cat, methods: [:breed_name]
   end
 
   private
@@ -30,7 +30,7 @@ class CatsController < ApplicationController
   def update_and_show_cat(cat, status=200)
     cat.assign_attributes(cat_params)
     if cat.save
-      render json: cat, status: status
+      render json: cat, methods: [:breed_name], status: status
     else
       render json: {errors: cat.errors.full_messages.join(' ')}, status: 422
     end
