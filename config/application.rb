@@ -33,7 +33,8 @@ module KittenApi
     config.active_record.raise_in_transactional_callbacks = true
     config.action_dispatch.default_headers = {
     'Access-Control-Allow-Origin' => 'http://localhost:8000',
-    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(","),
+    'Access-Control-Allow-Headers' => %w{content-type, accept}
   }
   end
 end
