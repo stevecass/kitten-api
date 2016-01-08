@@ -1,6 +1,6 @@
 class BreedsController < ApplicationController
   def index
-    breeds = Breed.all
+    breeds = Breed.order(:name)
     render json: breeds
   end
 
